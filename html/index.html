@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" class="fontface">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Atlas Solr Autocomplete demo</title>
+
+    <meta charset="utf-8">
+    <title>Expression Atlas &lt; Demo pages</title>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#70BDBD"> <!-- Android Chrome mobile browser tab color -->
+
+    <!-- CSS: implied media=all -->
+    <!-- CSS concatenated and minified via ant build script-->
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.1/libraries/foundation-6/css/foundation.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.1/css/ebi-global.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Icon-fonts/v1.1/fonts.css" type="text/css" media="all">
+
+    <!-- Use this CSS file for any custom styling -->
+    <link rel="stylesheet" href="https://www.ebi.ac.uk/gxa/resources/css/foundation/atlas.css" type="text/css" media="all">
+</head>
+
+<body>
+<div id="wrapper" class="row">
+    <div id="content" class="small-12 columns">
+        <div id="target">
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="../dist/vendorCommons.bundle.js"></script>
+<script src="../dist/atlasAutocomplete.bundle.js"></script>
+
+<script>
+
+  atlasAutocomplete.render({
+    atlasUrl: `http://localhost:8080/gxa_sc/`,
+    suggesterEndpoint: `json/suggestions`,
+  }, 'target')
+
+</script>
+
+</html>

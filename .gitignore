@@ -1,6 +1,9 @@
 # IntelliJ IDEA projectf iles
 .idea/
 
+# Transpiled dist dir
+lib/
+
 # https://github.com/github/gitignore/blob/master/Node.gitignore
 
 # Logs
