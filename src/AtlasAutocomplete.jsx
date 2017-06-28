@@ -4,6 +4,8 @@ import Autocomplete from 'react-autocomplete'
 
 import URI from 'urijs'
 
+import SpeciesSelect from './SpeciesSelect.jsx'
+
 class AtlasAutocomplete extends React.Component {
   constructor(props) {
      super(props)
@@ -16,6 +18,11 @@ class AtlasAutocomplete extends React.Component {
     }
 
     this.updateSuggestions = this._updateSuggestions.bind(this)
+    this.speciesSelectOnChange = this._speciesSelectOnChange.bind(this)
+  }
+
+  _speciesSelectOnChange(event) {
+    this.setState({ species: event.target.value })
   }
 
   _updateSuggestions(event, value) {
@@ -25,7 +32,7 @@ class AtlasAutocomplete extends React.Component {
 
     const suggesterUrl = URI(this.props.suggesterEndpoint, this.props.atlasUrl).search({
       query: value,
-      species: `homo_sapiens`
+      species: this.state.species
     }).toString()
 
     fetch(suggesterUrl)
@@ -44,18 +51,27 @@ class AtlasAutocomplete extends React.Component {
 
   render() {
     return(
-      <Autocomplete value={this.state.selectedItem}
-                    items={this.state.currentSuggestions}
-                    getItemValue={(item) => item.category}
-                    onSelect={(value) => this.setState({ selectedItem: value, currentSuggestions: [] })}
-                    onChange={this.updateSuggestions}
+      <div className={`row`}>
+        <div className={`small-8 columns`}>
+          <Autocomplete value={this.state.selectedItem}
+                        items={this.state.currentSuggestions}
+                        getItemValue={(item) => item.category}
+                        onSelect={(value) => this.setState({ selectedItem: value, currentSuggestions: [] })}
+                        onChange={this.updateSuggestions}
 
-                    renderItem={(item, isHighlighted) =>
-                      <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-                        {item.value} ({item.category})
-                      </div>}
+                        renderItem={(item, isHighlighted) => {
+                          const innerHtml = {__html: `${item.value} (${item.category})`}
+                          return (
+                            <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
+                              <span dangerouslySetInnerHTML={innerHtml} />
+                            </div>)}}
 
-      />
+          />
+        </div>
+        <div className={`small-4 columns`}>
+          <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
+        </div>
+      </div>
     )
   }
 }
