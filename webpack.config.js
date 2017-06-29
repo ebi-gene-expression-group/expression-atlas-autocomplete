@@ -6,7 +6,7 @@ process.traceDeprecation = true;
 
 module.exports = {
     entry: {
-        atlasAutocomplete: ['whatwg-fetch', './html/render.jsx'],
+        atlasAutocomplete: ['whatwg-fetch', './html/render.js'],
         dependencies: ['prop-types', 'react', 'react-dom', 'react-autocomplete', 'urijs']
     },
 

@@ -4,7 +4,7 @@ import Autocomplete from 'react-autocomplete'
 
 import URI from 'urijs'
 
-import SpeciesSelect from './SpeciesSelect.jsx'
+import SpeciesSelect from './SpeciesSelect.js'
 
 class AtlasAutocomplete extends React.Component {
   constructor(props) {

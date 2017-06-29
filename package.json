@@ -5,8 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src -d lib",
-    "prepublish": "npm run build",
-    "test": "jest"
+    "prepublish": "npm run build"
   },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "license": "Apache-2.0",
