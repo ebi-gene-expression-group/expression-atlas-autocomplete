@@ -45,7 +45,7 @@ class AtlasAutocomplete extends React.Component {
         })
       })
       .catch((ex) => {
-        console.log('parsing failed', ex)
+        console.log(`Error parsing JSON: ${ex}`)
       })
   }
 
@@ -56,17 +56,18 @@ class AtlasAutocomplete extends React.Component {
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
                         inputProps={{type: `text`}}
+
                         value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
+
                         getItemValue={(item) => item.category}
                         onSelect={(value) => this.setState({ selectedItem: value, currentSuggestions: [] })}
                         onChange={this.updateSuggestions}
 
                         renderItem={(item, isHighlighted) => {
-                          const innerHtml = {__html: `${item.value} (${item.category})`}
                           return (
                             <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
-                              <span dangerouslySetInnerHTML={innerHtml} />
+                              <span dangerouslySetInnerHTML={{__html: `${item.value} (${item.category})`}} />
                             </div>)}} />
         </div>
         
