@@ -57,15 +57,18 @@ class AtlasAutocomplete extends React.Component {
       padding: `2px 0`,
       fontSize: `90%`,
       overflow: `auto`,
-      maxHeight: `50%`  // TODO: don't cheat, let it flow to the bottom
+      maxHeight: `50%`,  // TODO: don't cheat, let it flow to the bottom
+      position: `absolute`,
+      top: `auto`,
+      zIndex: `1`
     }
 
     return(
-      <div className={`row`}>
+      <div className={`row margin-bottom-none`}>
         <div className={`small-8 columns`}>
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
-                        inputProps={{type: `text`}}
+                        inputProps={{type: `text`, className: `margin-bottom-none`}}
 
                         value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
