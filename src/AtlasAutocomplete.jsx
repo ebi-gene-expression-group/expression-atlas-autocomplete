@@ -53,7 +53,10 @@ class AtlasAutocomplete extends React.Component {
     return(
       <div className={`row`}>
         <div className={`small-8 columns`}>
-          <Autocomplete value={this.state.selectedItem}
+          <label>Gene ID, gene name or gene feature</label>
+          <Autocomplete wrapperStyle={{display: ``}}
+                        inputProps={{type: `text`}}
+                        value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
                         getItemValue={(item) => item.category}
                         onSelect={(value) => this.setState({ selectedItem: value, currentSuggestions: [] })}
@@ -64,10 +67,9 @@ class AtlasAutocomplete extends React.Component {
                           return (
                             <div style={{ background: isHighlighted ? 'lightgray' : 'white' }}>
                               <span dangerouslySetInnerHTML={innerHtml} />
-                            </div>)}}
-
-          />
+                            </div>)}} />
         </div>
+        
         <div className={`small-4 columns`}>
           <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
         </div>
