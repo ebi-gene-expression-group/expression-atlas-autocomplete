@@ -66,7 +66,7 @@ class AtlasAutocomplete extends React.Component {
         <div className={`small-8 columns`}>
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
-                        inputProps={{type: `text`, className: `margin-bottom-none`}}
+                        inputProps={{type: `text`, className: `margin-bottom-none`, name: `geneId`}}
 
                         value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
