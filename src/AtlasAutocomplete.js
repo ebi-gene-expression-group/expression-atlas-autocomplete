@@ -11,8 +11,7 @@ class AtlasAutocomplete extends React.Component {
      super(props)
 
      this.state = {
-      selectedItem: ``,
-      term: ``,
+      selectedItem: this.props.initialValue,
       species: ``,
       currentSuggestions: []
     }
@@ -94,7 +93,12 @@ class AtlasAutocomplete extends React.Component {
 
 AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
-  suggesterEndpoint: PropTypes.string.isRequired
+  suggesterEndpoint: PropTypes.string.isRequired,
+  initialValue: PropTypes.string
+}
+
+AtlasAutocomplete.defaultProps = {
+  initialValue: ``
 }
 
 export default AtlasAutocomplete
