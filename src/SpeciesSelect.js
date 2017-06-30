@@ -4,46 +4,31 @@ import { connect } from 'react-refetch'
 
 import URI from 'urijs'
 
-class SpeciesSelect extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const _option = (label) => {
+  return <option key={label} value={label}>{label}</option>
+}
 
-  _option(label) {
-    return <option key={label} value={label}>{label}</option>
-  }
+const SpeciesSelect = (props) => {
+  const {speciesFetch} = props
 
-  render() {
-    const {speciesFetch} = this.props
+  return (
+    <div>
+      <label>Species</label>
+      { speciesFetch.fulfilled ?
+        <select onChange={props.onChange}>
+          <option value={``}>Any</option>
+          {speciesFetch.value.topSpecies.map(_option)}
+          <option value={`-`} disabled={`true`}>{speciesFetch.value.separator}</option>
+          {speciesFetch.value.allSpecies.map(_option)}
+        </select> :
 
-    if (speciesFetch.fulfilled) {
-      return (
-        <div>
-          <label>Species</label>
-          <select onChange={this.props.onChange}>
-            <option value={``}>Any</option>
-            {speciesFetch.value.topSpecies.map(this._option)}
-            <option value={`-`} disabled={`true`}>{speciesFetch.value.separator}</option>
-            {speciesFetch.value.allSpecies.map(this._option)}
-          </select>
-        </div>
-      )
-    } else if (speciesFetch.pending) {
-      return (
-        <div>
-          <label>Species</label>
-          <select>{this._option(`Waiting…`)}</select>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <label>Species</label>
-          <select>{this._option(`Error!`)}</select>
-        </div>
-      )
-    }
-  }
+        speciesFetch.pending ?
+          <select disabled={`true`}>{_option(`Fetching species…`)}</select> :
+
+          <select disabled={`true`}>{_option(`Error fetching species`)}</select>
+      }
+    </div>
+  )
 }
 
 SpeciesSelect.propTypes = {
