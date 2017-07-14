@@ -82,10 +82,12 @@ class AtlasAutocomplete extends React.Component {
 
                         menuStyle={menuStyle} />
         </div>
-        
-        <div className={`small-4 columns`}>
-          <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
-        </div>
+
+          {this.props.showOnlyGeneAutocomplete ? "" :
+              <div className={`small-4 columns`}>
+                <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
+              </div>
+          }
       </div>
     )
   }
@@ -94,7 +96,8 @@ class AtlasAutocomplete extends React.Component {
 AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
   suggesterEndpoint: PropTypes.string.isRequired,
-  initialValue: PropTypes.string
+  initialValue: PropTypes.string,
+  showOnlyGeneAutocomplete: PropTypes.bool
 }
 
 AtlasAutocomplete.defaultProps = {
