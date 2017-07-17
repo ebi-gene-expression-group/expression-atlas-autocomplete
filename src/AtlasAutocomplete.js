@@ -62,7 +62,7 @@ class AtlasAutocomplete extends React.Component {
 
     return(
       <div className={`row margin-bottom-none`}>
-        <div className={`small-8 columns`}>
+        <div className={this.props.geneBoxStyle ? this.props.geneBoxStyle : 'columns small-8'}>
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
                         inputProps={{type: `text`, className: `margin-bottom-none`, name: `geneId`}}
@@ -97,7 +97,8 @@ AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
   suggesterEndpoint: PropTypes.string.isRequired,
   initialValue: PropTypes.string,
-  showOnlyGeneAutocomplete: PropTypes.bool
+  showOnlyGeneAutocomplete: PropTypes.bool,
+  geneBoxStyle: PropTypes.string
 }
 
 AtlasAutocomplete.defaultProps = {
