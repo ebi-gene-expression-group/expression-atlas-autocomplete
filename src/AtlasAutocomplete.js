@@ -71,7 +71,10 @@ class AtlasAutocomplete extends React.Component {
                         items={this.state.currentSuggestions}
 
                         getItemValue={(item) => item.category}
-                        onSelect={(value) => this.setState({ selectedItem: value, currentSuggestions: [] })}
+                        onSelect={(value) => {this.setState({
+                            selectedItem: value, currentSuggestions: [] })
+                            this.props.onSelect(value)}
+                        }
                         onChange={this.updateSuggestions}
 
                         renderItem={(item, isHighlighted) => {
@@ -98,7 +101,8 @@ AtlasAutocomplete.propTypes = {
   suggesterEndpoint: PropTypes.string.isRequired,
   initialValue: PropTypes.string,
   showOnlyGeneAutocomplete: PropTypes.bool,
-  geneBoxStyle: PropTypes.string
+  geneBoxStyle: PropTypes.string,
+  onSelect:PropTypes.func
 }
 
 AtlasAutocomplete.defaultProps = {
