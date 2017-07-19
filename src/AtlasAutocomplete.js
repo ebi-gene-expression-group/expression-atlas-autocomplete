@@ -20,6 +20,12 @@ class AtlasAutocomplete extends React.Component {
     this.speciesSelectOnChange = this._speciesSelectOnChange.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+      this.setState({
+          selectedItem: nextProps.initialValue
+      })
+  }
+
   _speciesSelectOnChange(event) {
     this.setState({ species: event.target.value })
   }
@@ -67,7 +73,7 @@ class AtlasAutocomplete extends React.Component {
           <Autocomplete wrapperStyle={{display: ``}}
                         inputProps={{type: `text`, className: `margin-bottom-none`, name: `geneId`}}
 
-                        value={this.state.selectedItem  !== "" ? this.state.selectedItem : this.props.initialValue}
+                        value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
 
                         getItemValue={(item) => item.category}
