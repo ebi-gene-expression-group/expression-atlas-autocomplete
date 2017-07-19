@@ -67,7 +67,7 @@ class AtlasAutocomplete extends React.Component {
           <Autocomplete wrapperStyle={{display: ``}}
                         inputProps={{type: `text`, className: `margin-bottom-none`, name: `geneId`}}
 
-                        value={this.state.selectedItem}
+                        value={this.state.selectedItem  !== "" ? this.state.selectedItem : this.props.initialValue}
                         items={this.state.currentSuggestions}
 
                         getItemValue={(item) => item.category}
