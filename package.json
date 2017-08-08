@@ -4,9 +4,7 @@
   "description": "React component that offers suggestions in a search field offered by a Solr suggester component filtered by context",
   "main": "lib/index.js",
   "scripts": {
-    "build": "babel src -d lib",
-    "prepublish": "npm run build"
-  },
+    "prepublishOnly": "rm -rf lib && babel src -d lib --copy-files",  },
   "author": "Alfonso Muñoz-Pomer Fuentes <amunoz@ebi.ac.uk>",
   "license": "Apache-2.0",
   "repository": "https://github.com/gxa/atlas-autocomplete",
