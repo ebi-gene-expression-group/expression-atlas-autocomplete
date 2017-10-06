@@ -12,12 +12,9 @@
 </head>
 
 <body>
-<div id="wrapper" class="row">
-    <div id="content" class="small-12 columns">
-        <div id="target">
-        </div>
-    </div>
-</div>
+  <div id="wrapper" class="row column">
+    <div id="target"></div>
+  </div>
 </body>
 
 <script src="../dist/vendorCommons.bundle.js"></script>
@@ -26,9 +23,13 @@
 <script>
 
   atlasAutocomplete.render({
-    atlasUrl: `http://localhost:9090/gxa_sc/`,
+    atlasUrl: `http://localhost:8080/gxa_sc/`,
     suggesterEndpoint: `json/suggestions`,
-    initialValue: `ENSG00000009`
+    enableSpeciesFilter: true,
+    initialValue: `ENS`,
+    wrapperClassName: `row`,
+    autocompleteClassName: `small-8 columns`,
+    speciesFilterClassName: `small-4 columns`
   }, 'target')
 
 </script>

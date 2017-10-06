@@ -67,11 +67,11 @@ class AtlasAutocomplete extends React.Component {
     }
 
     return(
-      <div className={`row ${this.props.className}`}>
-        <div className={this.props.enableSpeciesFilter ? `small-8 columns` : `small-12 columns`}>
+      <div className={this.props.wrapperClassName}>
+        <div className={this.props.autocompleteClassName}>
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
-                        inputProps={{type: `text`, className: this.props.autocompleteClassName, name: `geneId`}}
+                        inputProps={{type: `text`, name: `geneId`}}
 
                         value={this.state.selectedItem}
                         items={this.state.currentSuggestions}
@@ -85,7 +85,7 @@ class AtlasAutocomplete extends React.Component {
 
                         renderItem={(item, isHighlighted) => {
                           return (
-                            <div style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
+                            <div key={`${item.value}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
                               <span dangerouslySetInnerHTML={{__html: `${item.value} (${item.category})`}} />
                             </div>)}}
 
@@ -93,7 +93,7 @@ class AtlasAutocomplete extends React.Component {
         </div>
 
           {this.props.enableSpeciesFilter &&
-              <div className={`small-4 columns`}>
+              <div className={this.props.speciesFilterClassName}>
                 <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
               </div>
           }
@@ -105,17 +105,21 @@ class AtlasAutocomplete extends React.Component {
 AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
   suggesterEndpoint: PropTypes.string.isRequired,
-  initialValue: PropTypes.string,
   enableSpeciesFilter: PropTypes.bool,
+  initialValue: PropTypes.string,
   onSelect: PropTypes.func,
-  className: PropTypes.string,
-  autocompleteClassName: PropTypes.string
+  wrapperClassName: PropTypes.string,
+  autocompleteClassName: PropTypes.string,
+  speciesFilterClassName: PropTypes.string
 }
 
 AtlasAutocomplete.defaultProps = {
+  enableSpeciesFilter: false,
   initialValue: ``,
-  className: ``,
-  autocompleteClassName: ``
+  onSelect: () => {},
+  wrapperClassName: ``,
+  autocompleteClassName: ``,
+  speciesFilterClassName: ``
 }
 
 export default AtlasAutocomplete
