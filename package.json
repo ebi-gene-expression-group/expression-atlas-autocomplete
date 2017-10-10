@@ -1,6 +1,6 @@
 {
   "name": "expression-atlas-autocomplete",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React component that offers suggestions in a search field offered by a Solr suggester component filtered by context",
   "main": "lib/index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "dependencies": {
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-autocomplete": "^1.7.1",
+    "react-autocomplete": "^1.7.2",
     "react-dom": "^16.0.0",
     "urijs": "^1.19.0"
   },
