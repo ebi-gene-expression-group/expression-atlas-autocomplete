@@ -1,34 +1,79 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-refetch'
 
 import URI from 'urijs'
+
+const fetchResponseJson = async (base, endpoint) => {
+  const response = await fetch(URI(endpoint, base).toString())
+  const responseJson = await response.json()
+  return responseJson
+}
 
 const _option = (label) => {
   return <option key={label} value={label}>{label}</option>
 }
 
-const SpeciesSelect = (props) => {
-  const {speciesFetch} = props
+class SpeciesSelect extends React.Component {
+  constructor(props) {
+    super(props)
 
-  return (
-    <div>
-      <label>Species</label>
-      { speciesFetch.fulfilled ?
-        <select onChange={props.onChange}>
-          <option value={``}>Any</option>
-          {speciesFetch.value.topSpecies.map(_option)}
-          <option value={`-`} disabled={`true`}>{speciesFetch.value.separator}</option>
-          {speciesFetch.value.allSpecies.map(_option)}
-        </select> :
-
-        speciesFetch.pending ?
-          <select disabled={`true`}>{_option(`Fetching species…`)}</select> :
-
-          <select disabled={`true`}>{_option(`Error fetching species`)}</select>
+    this.state = {
+      loading: false,
+      errorMessage: null,
+      species: {
+        topSpecies: [],
+        separator: ``,
+        allSpecies: []
       }
-    </div>
-  )
+    }
+
+    this._fetchAndSetState = this._fetchAndSetState.bind(this)
+  }
+
+  render() {
+    return (
+      <div>
+        <label>Species</label>
+        { this.state.loading ?
+            <select disabled={`true`}>{_option(`Fetching species…`)}</select> :
+
+          this.state.errorMessage ?
+            <select disabled={`true`}>{_option(this.state.errorMessage)}</select> :
+
+            <select onChange={this.props.onChange}>
+              <option value={``}>Any</option>
+              {this.state.species.topSpecies.map(_option)}
+              <option value={`-`} disabled={`true`}>{this.state.species.separator}</option>
+              {this.state.species.allSpecies.map(_option)}
+            </select>
+        }
+      </div>
+    )
+  }
+
+  _fetchAndSetState(baseUrl, relUrl) {
+  this.setState({
+    loading: true
+  })
+  return fetchResponseJson  (baseUrl, relUrl)
+    .then((responseJson) => {
+      this.setState({
+        species: responseJson,
+        loading: false,
+        errorMessage: null
+      })
+    })
+    .catch((reason) => {
+      this.setState({
+        errorMessage: `${reason.name}: ${reason.message}`,
+        loading: false
+      })
+    })
+  }
+
+  componentDidMount() {
+    return this._fetchAndSetState(this.props.atlasUrl, `json/suggestions/species`)
+  }
 }
 
 SpeciesSelect.propTypes = {
@@ -36,6 +81,4 @@ SpeciesSelect.propTypes = {
   onChange: PropTypes.func.isRequired
 }
 
-export default connect((props) => ({
-  speciesFetch: URI(`json/suggestions/species`, props.atlasUrl).toString()
-}))(SpeciesSelect)
+export default SpeciesSelect
