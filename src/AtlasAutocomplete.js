@@ -12,7 +12,7 @@ class AtlasAutocomplete extends React.Component {
 
      this.state = {
       selectedItem: this.props.initialValue,
-      species: ``,
+      species: this.props.defaultSpecies,
       currentSuggestions: []
     }
 
@@ -94,7 +94,7 @@ class AtlasAutocomplete extends React.Component {
 
           {this.props.enableSpeciesFilter &&
               <div className={this.props.speciesFilterClassName}>
-                <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange}/>
+                <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange} selectedValue={this.state.species}/>
               </div>
           }
       </div>
@@ -110,7 +110,8 @@ AtlasAutocomplete.propTypes = {
   onSelect: PropTypes.func,
   wrapperClassName: PropTypes.string,
   autocompleteClassName: PropTypes.string,
-  speciesFilterClassName: PropTypes.string
+  speciesFilterClassName: PropTypes.string,
+  defaultSpecies: PropTypes.string
 }
 
 AtlasAutocomplete.defaultProps = {
@@ -119,7 +120,8 @@ AtlasAutocomplete.defaultProps = {
   onSelect: () => {},
   wrapperClassName: ``,
   autocompleteClassName: ``,
-  speciesFilterClassName: ``
+  speciesFilterClassName: ``,
+  defaultSpecies: ``
 }
 
 export default AtlasAutocomplete

@@ -40,7 +40,7 @@ class SpeciesSelect extends React.Component {
           this.state.errorMessage ?
             <select disabled={`true`}>{_option(this.state.errorMessage)}</select> :
 
-            <select onChange={this.props.onChange}>
+            <select onChange={this.props.onChange} value={this.props.selectedValue}>
               <option value={``}>Any</option>
               {this.state.species.topSpecies.map(_option)}
               <option value={`-`} disabled={`true`}>{this.state.species.separator}</option>
@@ -78,7 +78,8 @@ class SpeciesSelect extends React.Component {
 
 SpeciesSelect.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  selectedValue: PropTypes.string
 }
 
 export default SpeciesSelect

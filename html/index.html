@@ -12,8 +12,29 @@
 </head>
 
 <body>
-  <div id="wrapper" class="row column">
-    <div id="target"></div>
+  <div class="row column">
+
+    <div class="row column">
+      <h1>Autocomplete with species selection</h1>
+      <div class="row column">
+        <div id="species_select"></div>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row column">
+      <h1>Autocomplete without species selection</h1>
+      <div class="row column">
+        <h2>Mouse, <tt>defaultSpecies: 'Mus musculus'</tt></h2>
+        <div id="mouse"></div>
+      </div>
+
+      <div class="row column">
+        <h2>Human, <tt>defaultSpecies: 'Homo sapiens'</tt></h2>
+        <div id="human"></div>
+      </div>
+    </div>
   </div>
 </body>
 
@@ -23,14 +44,34 @@
 <script>
 
   atlasAutocomplete.render({
-    atlasUrl: `http://localhost:8080/gxa_sc/`,
-    suggesterEndpoint: `json/suggestions`,
+    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    suggesterEndpoint: 'json/suggestions',
     enableSpeciesFilter: true,
-    initialValue: `ENS`,
-    wrapperClassName: `row`,
-    autocompleteClassName: `small-8 columns`,
-    speciesFilterClassName: `small-4 columns`
-  }, 'target')
+    initialValue: 'ENS',
+    wrapperClassName: 'row',
+    autocompleteClassName: 'small-8 columns',
+    speciesFilterClassName: 'small-4 columns'
+  }, 'species_select');
+
+  atlasAutocomplete.render({
+    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    suggesterEndpoint: 'json/suggestions',
+    enableSpeciesFilter: false,
+    defaultSpecies: 'Mus musculus',
+    initialValue: 'zinc',
+    wrapperClassName: 'row',
+    autocompleteClassName: 'small-12 columns'
+  }, 'mouse');
+
+  atlasAutocomplete.render({
+    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    suggesterEndpoint: 'json/suggestions',
+    enableSpeciesFilter: false,
+    defaultSpecies: 'Homo sapiens',
+    initialValue: 'zinc',
+    wrapperClassName: 'row',
+    autocompleteClassName: 'small-12 columns'
+  }, 'human');
 
 </script>
 
