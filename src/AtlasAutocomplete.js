@@ -60,15 +60,19 @@ class AtlasAutocomplete extends React.Component {
       boxShadow: `0 2px 12px rgba(0, 0, 0, 0.1)`,
       fontSize: `90%`,
       overflow: `auto`,
-      maxHeight: `50%`,  // TODO: don't cheat, let it flow to the bottom
+      maxHeight: `20rem`,  // approx. as many lines as 20/2
       position: `absolute`,
       top: `auto`,
       zIndex: `1`
     }
 
+    const {allSpecies} = this.props
+    const {wrapperClassName, autocompleteClassName} = this.props
+    const {enableSpeciesFilter, speciesFilterClassName, speciesFilterStatusMessage, topSpecies, separator} = this.props
+
     return(
-      <div className={this.props.wrapperClassName}>
-        <div className={this.props.autocompleteClassName}>
+      <div className={wrapperClassName}>
+        <div className={autocompleteClassName}>
           <label>Gene ID, gene name or gene feature</label>
           <Autocomplete wrapperStyle={{display: ``}}
                         inputProps={{type: `text`, name: `geneId`}}
@@ -92,9 +96,14 @@ class AtlasAutocomplete extends React.Component {
                         menuStyle={menuStyle} />
         </div>
 
-          {this.props.enableSpeciesFilter &&
-              <div className={this.props.speciesFilterClassName}>
-                <SpeciesSelect atlasUrl={this.props.atlasUrl} onChange={this.speciesSelectOnChange} selectedValue={this.state.species}/>
+          {enableSpeciesFilter &&
+              <div className={speciesFilterClassName}>
+                <SpeciesSelect statusMessage={speciesFilterStatusMessage}
+                               allSpecies={allSpecies}
+                               topSpecies={topSpecies}
+                               separator={separator}
+                               onChange={this.speciesSelectOnChange}
+                               selectedValue={this.state.species} />
               </div>
           }
       </div>
@@ -104,6 +113,9 @@ class AtlasAutocomplete extends React.Component {
 
 AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
+  allSpecies: PropTypes.arrayOf(PropTypes.string),
+  topSpecies: PropTypes.arrayOf(PropTypes.string),
+  separator: PropTypes.string,
   suggesterEndpoint: PropTypes.string.isRequired,
   enableSpeciesFilter: PropTypes.bool,
   initialValue: PropTypes.string,
@@ -111,10 +123,14 @@ AtlasAutocomplete.propTypes = {
   wrapperClassName: PropTypes.string,
   autocompleteClassName: PropTypes.string,
   speciesFilterClassName: PropTypes.string,
+  speciesFilterStatusMessage: PropTypes.string.isRequired,
   defaultSpecies: PropTypes.string
 }
 
 AtlasAutocomplete.defaultProps = {
+  allSpecies: [],
+  topSpecies: [],
+  separator: [],
   enableSpeciesFilter: false,
   initialValue: ``,
   onSelect: () => {},
