@@ -41,32 +41,35 @@
 
   atlasAutocomplete.render({
     atlasUrl: 'http://localhost:8080/gxa/sc/',
+    resource: 'json/suggestions/species',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: true,
     initialValue: 'ENS',
     wrapperClassName: 'row',
     autocompleteClassName: 'small-8 columns',
+    enableSpeciesFilter: true,
     speciesFilterClassName: 'small-4 columns'
   }, 'species_select');
 
   atlasAutocomplete.render({
     atlasUrl: 'http://localhost:8080/gxa/sc/',
+    resource: 'json/suggestions/species',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: false,
-    defaultSpecies: 'Mus musculus',
     initialValue: 'zinc',
     wrapperClassName: 'row',
-    autocompleteClassName: 'small-12 columns'
+    autocompleteClassName: 'small-8 columns',
+    enableSpeciesFilter: true,
+    speciesFilterClassName: 'small-4 columns',
+    defaultSpecies: 'Mus musculus'
   }, 'mouse');
 
   atlasAutocomplete.render({
     atlasUrl: 'http://localhost:8080/gxa/sc/',
+    resource: 'json/suggestions/species',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: false,
-    defaultSpecies: 'Homo sapiens',
     initialValue: 'zinc',
-    wrapperClassName: 'row',
-    autocompleteClassName: 'small-12 columns'
+    wrapperClassName: 'row column',
+    enableSpeciesFilter: false,
+    defaultSpecies: 'Homo sapiens'
   }, 'human');
 
 </script>
