@@ -1,3 +1,3 @@
-import AtlasAutocomplete from './AtlasAutocomplete.js'
+import FetchLoader from './FetchLoader.js'
 
-export default AtlasAutocomplete
+export default FetchLoader
