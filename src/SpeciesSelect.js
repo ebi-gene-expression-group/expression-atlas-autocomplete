@@ -42,8 +42,8 @@ class SpeciesSelect extends React.Component {
 
             <select onChange={this.props.onChange} value={this.props.selectedValue}>
               <option value={``}>Any</option>
-              {this.state.species.topSpecies.map(_option)}
-              <option value={`-`} disabled={`true`}>{this.state.species.separator}</option>
+              {this.state.species.topSpecies.length && this.state.species.topSpecies.map(_option)}
+              {this.state.species.topSpecies.length && <option value={`-`} disabled={`true`}>{this.state.species.separator}</option>}
               {this.state.species.allSpecies.map(_option)}
             </select>
         }
