@@ -5,7 +5,7 @@ import URI from 'urijs'
 import AtlasAutocomplete from './AtlasAutocomplete'
 
 const _fetch = async (host, resource) => {
-  const url = URI(resource, host).toString()
+  const url = URI(resource, host).segment(`species`).toString()
   const response = await fetch(url)
   // The promise returned by fetch may be fulfilled with a 4xx or 5xx return code...
   if (response.ok) {
@@ -70,7 +70,7 @@ class FetchLoader extends React.Component {
   }
 
   componentDidMount() {
-    return this._fetchAndSetState(this.props.atlasUrl, this.props.resource)
+    return this._fetchAndSetState(this.props.atlasUrl, this.props.suggesterEndpoint)
   }
 
   componentDidCatch(error, info) {
@@ -86,8 +86,6 @@ class FetchLoader extends React.Component {
 
 FetchLoader.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
-  resource: PropTypes.string.isRequired,
-  // Wrapped props
   suggesterEndpoint: PropTypes.string.isRequired,
   initialValue: PropTypes.string,
   onSelect: PropTypes.func,
