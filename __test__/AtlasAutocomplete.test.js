@@ -20,7 +20,6 @@ describe(`AtlasAutocomplete`, () => {
     atlasUrl: `https://www.ebi.ac.uk/gxa/sc/`,
     allSpecies: [`Zigerion`, `Cromulon`, `Meeseek`, `Gromflomite`],
     topSpecies: [`Meeseek`],
-    separator: `(╯°□°）╯︵ ┻━┻`,
     suggesterEndpoint: `json/suggestions`,
     enableSpeciesFilter: true,
     speciesFilterStatusMessage: ``,

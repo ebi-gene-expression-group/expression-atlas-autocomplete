@@ -14,7 +14,7 @@ const SpeciesSelect = ({statusMessage, topSpecies, allSpecies, separator, onChan
         <select onChange={onChange} value={selectedValue}>
           <option value={``}>Any</option>
           {topSpecies.length && topSpecies.map(_option)}
-          {topSpecies.length && <option value={`-`} disabled={`true`}>{separator}</option>}
+          {topSpecies.length && <option value={`-`} disabled={`true`}>{Math.random() < 0.999 ? `━━━━━━━━━━━━` : `(╯°□°）╯︵ ┻━┻`}</option>}
           {allSpecies.map(_option)}
         </select>
     }
@@ -23,7 +23,6 @@ const SpeciesSelect = ({statusMessage, topSpecies, allSpecies, separator, onChan
 SpeciesSelect.propTypes = {
   topSpecies: PropTypes.arrayOf(PropTypes.string).isRequired,
   allSpecies: PropTypes.arrayOf(PropTypes.string).isRequired,
-  separator: PropTypes.string.isRequired,
   statusMessage: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   selectedValue: PropTypes.string

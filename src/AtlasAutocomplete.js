@@ -101,7 +101,6 @@ class AtlasAutocomplete extends React.Component {
                 <SpeciesSelect statusMessage={speciesFilterStatusMessage}
                                allSpecies={allSpecies}
                                topSpecies={topSpecies}
-                               separator={separator}
                                onChange={this.speciesSelectOnChange}
                                selectedValue={this.state.selectedSpecies} />
               </div>
@@ -115,7 +114,6 @@ AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
   allSpecies: PropTypes.arrayOf(PropTypes.string),
   topSpecies: PropTypes.arrayOf(PropTypes.string),
-  separator: PropTypes.string,
   suggesterEndpoint: PropTypes.string.isRequired,
   enableSpeciesFilter: PropTypes.bool,
   initialValue: PropTypes.string,
@@ -130,7 +128,6 @@ AtlasAutocomplete.propTypes = {
 AtlasAutocomplete.defaultProps = {
   allSpecies: [],
   topSpecies: [],
-  separator: ``,
   enableSpeciesFilter: false,
   initialValue: ``,
   onSelect: () => {},
