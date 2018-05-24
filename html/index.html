@@ -1,13 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Atlas Solr Autocomplete demo</title>
-    <title>Expression Atlas &lt; Demo pages</title>
-
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/libraries/foundation-6/css/foundation.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/css/ebi-global.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="https://www.ebi.ac.uk/web_guidelines/EBI-Icon-fonts/v1.2/fonts.css" type="text/css" media="all" />
-
+    <title>Expression Atlas Autocomplete demo</title>
+    <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.3/css/ebi-global.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="https://ebi.emblstatic.net/web_guidelines/EBI-Icon-fonts/v1.3/fonts.css" type="text/css" media="all" />
     <link rel="stylesheet" href="https://www.ebi.ac.uk/gxa/resources/css/foundation/atlas.css" type="text/css" media="all">
 </head>
 
@@ -44,33 +40,33 @@
 <script>
 
   atlasAutocomplete.render({
-    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    atlasUrl: 'http://localhost:8080/gxa/sc/',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: true,
     initialValue: 'ENS',
     wrapperClassName: 'row',
     autocompleteClassName: 'small-8 columns',
+    enableSpeciesFilter: true,
     speciesFilterClassName: 'small-4 columns'
   }, 'species_select');
 
   atlasAutocomplete.render({
-    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    atlasUrl: 'http://localhost:8080/gxa/sc/',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: false,
-    defaultSpecies: 'Mus musculus',
     initialValue: 'zinc',
     wrapperClassName: 'row',
-    autocompleteClassName: 'small-12 columns'
+    autocompleteClassName: 'small-8 columns',
+    enableSpeciesFilter: true,
+    speciesFilterClassName: 'small-4 columns',
+    defaultSpecies: 'Mus musculus'
   }, 'mouse');
 
   atlasAutocomplete.render({
-    atlasUrl: 'http://localhost:8080/gxa_sc/',
+    atlasUrl: 'http://localhost:8080/gxa/sc/',
     suggesterEndpoint: 'json/suggestions',
-    enableSpeciesFilter: false,
-    defaultSpecies: 'Homo sapiens',
     initialValue: 'zinc',
-    wrapperClassName: 'row',
-    autocompleteClassName: 'small-12 columns'
+    wrapperClassName: 'row column',
+    enableSpeciesFilter: false,
+    defaultSpecies: 'Homo sapiens'
   }, 'human');
 
 </script>
