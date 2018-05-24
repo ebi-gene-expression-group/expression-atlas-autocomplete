@@ -11,7 +11,6 @@ Enzyme.configure({ adapter: new Adapter() })
 const props = {
   topSpecies: [`Meeseek`],
   allSpecies: [`Zigerion`, `Cromulon`, `Meeseek`, `Gromflomite`],
-  separator: `(╯°□°）╯︵ ┻━┻`,
   statusMessage: ``,
   onChange: () => {},
   selectedValue: ``

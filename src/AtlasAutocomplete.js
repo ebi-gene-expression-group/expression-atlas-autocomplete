@@ -12,7 +12,7 @@ class AtlasAutocomplete extends React.Component {
 
      this.state = {
       selectedItem: this.props.initialValue,
-      species: this.props.defaultSpecies,
+      selectedSpecies: this.props.defaultSpecies,
       currentSuggestions: []
     }
 
@@ -27,7 +27,7 @@ class AtlasAutocomplete extends React.Component {
   }
 
   _speciesSelectOnChange(event) {
-    this.setState({ species: event.target.value })
+    this.setState({ selectedSpecies: event.target.value })
   }
 
   _updateSuggestions(event, value) {
@@ -37,7 +37,7 @@ class AtlasAutocomplete extends React.Component {
 
     const suggesterUrl = URI(this.props.suggesterEndpoint, this.props.atlasUrl).search({
       query: value,
-      species: this.state.species
+      species: this.state.selectedSpecies ? this.state.selectedSpecies : this.props.allSpecies.join()
     }).toString()
 
     fetch(suggesterUrl)
@@ -101,9 +101,8 @@ class AtlasAutocomplete extends React.Component {
                 <SpeciesSelect statusMessage={speciesFilterStatusMessage}
                                allSpecies={allSpecies}
                                topSpecies={topSpecies}
-                               separator={separator}
                                onChange={this.speciesSelectOnChange}
-                               selectedValue={this.state.species} />
+                               selectedValue={this.state.selectedSpecies} />
               </div>
           }
       </div>
@@ -115,7 +114,6 @@ AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
   allSpecies: PropTypes.arrayOf(PropTypes.string),
   topSpecies: PropTypes.arrayOf(PropTypes.string),
-  separator: PropTypes.string,
   suggesterEndpoint: PropTypes.string.isRequired,
   enableSpeciesFilter: PropTypes.bool,
   initialValue: PropTypes.string,
@@ -130,7 +128,6 @@ AtlasAutocomplete.propTypes = {
 AtlasAutocomplete.defaultProps = {
   allSpecies: [],
   topSpecies: [],
-  separator: [],
   enableSpeciesFilter: false,
   initialValue: ``,
   onSelect: () => {},
