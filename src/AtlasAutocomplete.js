@@ -8,9 +8,9 @@ import SpeciesSelect from './SpeciesSelect.js'
 
 class AtlasAutocomplete extends React.Component {
   constructor(props) {
-     super(props)
+    super(props)
 
-     this.state = {
+    this.state = {
       selectedItem: this.props.initialValue,
       selectedSpecies: this.props.defaultSpecies,
       currentSuggestions: []
@@ -21,9 +21,9 @@ class AtlasAutocomplete extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-      this.setState({
-          selectedItem: nextProps.initialValue
-      })
+    this.setState({
+      selectedItem: nextProps.initialValue
+    })
   }
 
   _speciesSelectOnChange(event) {
@@ -50,7 +50,7 @@ class AtlasAutocomplete extends React.Component {
         })
       })
       .catch((ex) => {
-        console.log(`Error parsing JSON: ${ex}`)
+        console.error(`Error parsing JSON: ${ex}`)
       })
   }
 
@@ -68,43 +68,44 @@ class AtlasAutocomplete extends React.Component {
 
     const {allSpecies} = this.props
     const {wrapperClassName, autocompleteClassName} = this.props
-    const {enableSpeciesFilter, speciesFilterClassName, speciesFilterStatusMessage, topSpecies, separator} = this.props
+    const {enableSpeciesFilter, speciesFilterClassName, speciesFilterStatusMessage, topSpecies} = this.props
 
     return(
       <div className={wrapperClassName}>
         <div className={autocompleteClassName}>
           <label>Gene ID, gene name or gene feature</label>
-          <Autocomplete wrapperStyle={{display: ``}}
-                        inputProps={{type: `text`, name: `geneId`}}
+          <Autocomplete
+            wrapperStyle={{display: ``}}
+            inputProps={{type: `text`, name: `geneId`}}
 
-                        value={this.state.selectedItem}
-                        items={this.state.currentSuggestions}
+            value={this.state.selectedItem}
+            items={this.state.currentSuggestions}
 
-                        getItemValue={(item) => item.category}
-                        onSelect={(value) => {this.setState({
-                            selectedItem: value, currentSuggestions: [] })
-                            this.props.onSelect(value)}
-                        }
-                        onChange={this.updateSuggestions}
+            getItemValue={(item) => item.category}
+            onSelect={(value) => {this.setState({
+              selectedItem: value, currentSuggestions: [] })
+            this.props.onSelect(value)}
+            }
+            onChange={this.updateSuggestions}
 
-                        renderItem={(item, isHighlighted) => {
-                          return (
-                            <div key={`${item.value}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
-                              <span dangerouslySetInnerHTML={{__html: `${item.value} (${item.category})`}} />
-                            </div>)}}
+            renderItem={(item, isHighlighted) => {
+              return (
+                <div key={`${item.value}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
+                  <span dangerouslySetInnerHTML={{__html: `${item.value} (${item.category})`}} />
+                </div>)}}
 
-                        menuStyle={menuStyle} />
+            menuStyle={menuStyle} />
         </div>
 
-          {enableSpeciesFilter &&
+        {enableSpeciesFilter &&
               <div className={speciesFilterClassName}>
                 <SpeciesSelect statusMessage={speciesFilterStatusMessage}
-                               allSpecies={allSpecies}
-                               topSpecies={topSpecies}
-                               onChange={this.speciesSelectOnChange}
-                               selectedValue={this.state.selectedSpecies} />
+                  allSpecies={allSpecies}
+                  topSpecies={topSpecies}
+                  onChange={this.speciesSelectOnChange}
+                  selectedValue={this.state.selectedSpecies} />
               </div>
-          }
+        }
       </div>
     )
   }

@@ -6,7 +6,6 @@ import Adapter from 'enzyme-adapter-react-16'
 import URI from 'urijs'
 import fetchMock from 'fetch-mock'
 
-import Autocomplete from 'react-autocomplete'
 import AtlasAutocomplete from '../src/AtlasAutocomplete'
 
 Enzyme.configure({ adapter: new Adapter() })

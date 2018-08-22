@@ -9,14 +9,14 @@ const SpeciesSelect = ({statusMessage, topSpecies, allSpecies, separator, onChan
   <div>
     <label>Species</label>
     { statusMessage ?
-        <select disabled={`true`}>{_option(statusMessage)}</select> :
+      <select disabled={`true`}>{_option(statusMessage)}</select> :
 
-        <select onChange={onChange} value={selectedValue}>
-          <option value={``}>Any</option>
-          {topSpecies.length && topSpecies.map(_option)}
-          {topSpecies.length && <option value={`-`} disabled={`true`}>{Math.random() < 0.999 ? `━━━━━━━━━━━━` : `(╯°□°）╯︵ ┻━┻`}</option>}
-          {allSpecies.map(_option)}
-        </select>
+      <select onChange={onChange} value={selectedValue}>
+        <option value={``}>Any</option>
+        {topSpecies.length && topSpecies.map(_option)}
+        {topSpecies.length && <option value={`-`} disabled={`true`}>{Math.random() < 0.999 ? `━━━━━━━━━━━━` : `(╯°□°）╯︵ ┻━┻`}</option>}
+        {allSpecies.map(_option)}
+      </select>
     }
   </div>
 
