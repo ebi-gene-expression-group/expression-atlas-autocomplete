@@ -4,30 +4,23 @@ import Autocomplete from 'react-autocomplete'
 
 import URI from 'urijs'
 
-import SpeciesSelect from './SpeciesSelect.js'
-
 class AtlasAutocomplete extends React.Component {
   constructor(props) {
-     super(props)
+    super(props)
 
-     this.state = {
+    this.state = {
       selectedItem: this.props.initialValue,
       selectedSpecies: this.props.defaultSpecies,
       currentSuggestions: []
     }
 
     this.updateSuggestions = this._updateSuggestions.bind(this)
-    this.speciesSelectOnChange = this._speciesSelectOnChange.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
-      this.setState({
-          selectedItem: nextProps.initialValue
-      })
-  }
-
-  _speciesSelectOnChange(event) {
-    this.setState({ selectedSpecies: event.target.value })
+    this.setState({
+        selectedItem: nextProps.initialValue
+    })
   }
 
   _updateSuggestions(event, value) {
@@ -66,49 +59,28 @@ class AtlasAutocomplete extends React.Component {
       zIndex: `1`
     }
 
-    const {allSpecies} = this.props
-    const {wrapperClassName, autocompleteClassName} = this.props
-    const {enableSpeciesFilter, speciesFilterClassName, speciesFilterStatusMessage, topSpecies, separator} = this.props
+    const {wrapperClassName} = this.props
 
     return(
       <div className={wrapperClassName}>
-        <div className={autocompleteClassName}>
-          <label>Gene ID, gene name or gene feature</label>
-          <Autocomplete wrapperStyle={{display: ``}}
-                        inputProps={{type: `text`, name: `geneId`}}
-
-                        value={this.state.selectedItem}
-                        items={this.state.currentSuggestions}
-
-                        getItemValue={(item) => item.category}
-                        onSelect={(value) => {this.setState({
-                            selectedItem: value, currentSuggestions: [] })
-                            this.props.onSelect(value)}
-                        }
-                        onChange={this.updateSuggestions}
-
-                        renderItem={(item, isHighlighted) => {
-                          return (
-                            <div key={`${item.value}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
-                              <span dangerouslySetInnerHTML={{__html: `${item.value} (${item.category})`}} />
-                            </div>)}}
-
-                        menuStyle={menuStyle} />
-        </div>
-
-          {enableSpeciesFilter &&
-              <div className={speciesFilterClassName}>
-                <SpeciesSelect statusMessage={speciesFilterStatusMessage}
-                               allSpecies={allSpecies}
-                               topSpecies={topSpecies}
-                               onChange={this.speciesSelectOnChange}
-                               selectedValue={this.state.selectedSpecies} />
-              </div>
+        <label>Gene ID, gene name or gene feature</label>
+        <Autocomplete
+          wrapperStyle={{display: ``}}
+          inputProps={{type: `text`, name: `geneId`}}
+          value={this.state.selectedItem}
+          items={this.state.currentSuggestions}
+          getItemValue={(item) => item.category}
+          onSelect={(value) => {this.setState({
+            selectedItem: value, currentSuggestions: [] })
+            this.props.onSelect(value)}
           }
+          onChange={this.updateSuggestions}
+          renderItem={(item, isHighlighted) => {
             return (
               <div key={`${item.term}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
                 <span dangerouslySetInnerHTML={{__html: `${item.term} (${item.category})`}} />
               </div>)}}
+          menuStyle={menuStyle} />
       </div>
     )
   }
@@ -116,28 +88,17 @@ class AtlasAutocomplete extends React.Component {
 
 AtlasAutocomplete.propTypes = {
   atlasUrl: PropTypes.string.isRequired,
-  allSpecies: PropTypes.arrayOf(PropTypes.string),
-  topSpecies: PropTypes.arrayOf(PropTypes.string),
   suggesterEndpoint: PropTypes.string.isRequired,
-  enableSpeciesFilter: PropTypes.bool,
   initialValue: PropTypes.string,
   onSelect: PropTypes.func,
   wrapperClassName: PropTypes.string,
-  autocompleteClassName: PropTypes.string,
-  speciesFilterClassName: PropTypes.string,
-  speciesFilterStatusMessage: PropTypes.string.isRequired,
   defaultSpecies: PropTypes.string
 }
 
 AtlasAutocomplete.defaultProps = {
-  allSpecies: [],
-  topSpecies: [],
-  enableSpeciesFilter: false,
   initialValue: ``,
   onSelect: () => {},
   wrapperClassName: ``,
-  autocompleteClassName: ``,
-  speciesFilterClassName: ``,
   defaultSpecies: ``
 }
 

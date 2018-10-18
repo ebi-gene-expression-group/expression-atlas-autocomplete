@@ -43,20 +43,14 @@
     atlasUrl: 'http://localhost:8080/gxa/sc/',
     suggesterEndpoint: 'json/suggestions',
     initialValue: 'ENS',
-    wrapperClassName: 'row',
-    autocompleteClassName: 'small-8 columns',
-    enableSpeciesFilter: true,
-    speciesFilterClassName: 'small-4 columns'
+    wrapperClassName: 'row column',
   }, 'species_select');
 
   atlasAutocomplete.render({
     atlasUrl: 'http://localhost:8080/gxa/sc/',
     suggesterEndpoint: 'json/suggestions',
     initialValue: 'zinc',
-    wrapperClassName: 'row',
-    autocompleteClassName: 'small-8 columns',
-    enableSpeciesFilter: true,
-    speciesFilterClassName: 'small-4 columns',
+    wrapperClassName: 'row column',
     defaultSpecies: 'Mus musculus'
   }, 'mouse');
 
@@ -65,7 +59,6 @@
     suggesterEndpoint: 'json/suggestions',
     initialValue: 'zinc',
     wrapperClassName: 'row column',
-    enableSpeciesFilter: false,
     defaultSpecies: 'Homo sapiens'
   }, 'human');
 
