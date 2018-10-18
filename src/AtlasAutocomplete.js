@@ -105,6 +105,10 @@ class AtlasAutocomplete extends React.Component {
                                selectedValue={this.state.selectedSpecies} />
               </div>
           }
+            return (
+              <div key={`${item.term}_${item.category}`} style={{ background: isHighlighted ? `lightgray` : `white`, padding: `2px 10px` }}>
+                <span dangerouslySetInnerHTML={{__html: `${item.term} (${item.category})`}} />
+              </div>)}}
       </div>
     )
   }
