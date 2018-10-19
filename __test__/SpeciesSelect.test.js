@@ -27,16 +27,16 @@ describe(`SpeciesSelect`, () => {
   test(`shows a separator if at least one top species is provided`, () => {
     const wrapper = mount(<SpeciesSelect {...props} />)
     expect(wrapper.find(`option`)
-        .map((rw) => rw.html())
-        .map((staticHtml) => staticHtml.match(/value=\"(.*?)\"/)[1]))
+      .map((rw) => rw.html())
+      .map((staticHtml) => staticHtml.match(/value=\"(.*?)\"/)[1]))
       .toContain(`-`)
   })
 
   test(`doesn’t show a separator if no top species are provided`, () => {
     const wrapper = mount(<SpeciesSelect {...props} topSpecies={[]}/>)
     expect(wrapper.find(`option`)
-        .map((rw) => rw.html())
-        .map((staticHtml) => staticHtml.match(/value=\"(.*?)\"/)[1]))
+      .map((rw) => rw.html())
+      .map((staticHtml) => staticHtml.match(/value=\"(.*?)\"/)[1]))
       .not.toContain(`-`)
   })
 
