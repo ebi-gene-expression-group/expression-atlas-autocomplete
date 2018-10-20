@@ -1,12 +1,12 @@
 {
   "name": "expression-atlas-autocomplete",
-  "version": "2.0.0",
+  "version": "3.0.0-beta",
   "description": "React component that offers suggestions in a search field offered by a Solr suggester component filtered by context",
   "main": "lib/index.js",
   "scripts": {
-    "dist": "NODE_ENV=production webpack --optimize-minimize",
     "prepack": "rm -rf lib && babel src -d lib --copy-files",
-    "test": "jest --coverage --verbose",
+    "testOnly": "jest --coverage --verbose",
+    "test": "npm run testOnly",
     "posttest": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "postversion": "npm publish",
     "postpublish": "git push && git push --tags"

@@ -4,84 +4,30 @@ exports[`AtlasAutocomplete matches snapshot 1`] = `
 <div
   className=""
 >
+  <label>
+    Gene ID, gene name or gene feature
+  </label>
   <div
-    className=""
-  >
-    <label>
-      Gene ID, gene name or gene feature
-    </label>
-    <div
-      style={
-        Object {
-          "display": "",
-        }
+    style={
+      Object {
+        "display": "",
       }
-    >
-      <input
-        aria-autocomplete="list"
-        aria-expanded={false}
-        autoComplete="off"
-        name="geneId"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onClick={[Function]}
-        onFocus={[Function]}
-        onKeyDown={[Function]}
-        role="combobox"
-        type="text"
-        value=""
-      />
-    </div>
-  </div>
-  <div
-    className=""
+    }
   >
-    <div>
-      <label>
-        Species
-      </label>
-      <select
-        onChange={[Function]}
-        value=""
-      >
-        <option
-          value=""
-        >
-          Any
-        </option>
-        <option
-          value="Meeseek"
-        >
-          Meeseek
-        </option>
-        <option
-          disabled="true"
-          value="-"
-        >
-          ━━━━━━━━━━━━
-        </option>
-        <option
-          value="Zigerion"
-        >
-          Zigerion
-        </option>
-        <option
-          value="Cromulon"
-        >
-          Cromulon
-        </option>
-        <option
-          value="Meeseek"
-        >
-          Meeseek
-        </option>
-        <option
-          value="Gromflomite"
-        >
-          Gromflomite
-        </option>
-      </select>
-    </div>
+    <input
+      aria-autocomplete="list"
+      aria-expanded={false}
+      autoComplete="off"
+      name="geneId"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onClick={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      role="combobox"
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;
