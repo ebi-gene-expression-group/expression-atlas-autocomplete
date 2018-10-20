@@ -19,7 +19,7 @@ class AtlasAutocomplete extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-        selectedItem: nextProps.initialValue
+      selectedItem: nextProps.initialValue
     })
   }
 
@@ -43,7 +43,7 @@ class AtlasAutocomplete extends React.Component {
         })
       })
       .catch((ex) => {
-        console.log(`Error parsing JSON: ${ex}`)
+        console.error(`Error parsing JSON: ${ex}`)
       })
   }
 

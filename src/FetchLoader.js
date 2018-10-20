@@ -21,10 +21,10 @@ class FetchLoader extends React.Component {
     return(
       error ?
         <AtlasAutocomplete {...data} {...this.props} speciesFilterStatusMessage={`${error.name}: ${error.message}`}/> :
-      loading ?
-        <AtlasAutocomplete {...data} {...this.props} speciesFilterStatusMessage={`Fetching species…`}/> :
-      // promise fulfilled
-        <AtlasAutocomplete {...data} {...this.props} speciesFilterStatusMessage={``}/>
+        loading ?
+          <AtlasAutocomplete {...data} {...this.props} speciesFilterStatusMessage={`Fetching species…`}/> :
+        // promise fulfilled
+          <AtlasAutocomplete {...data} {...this.props} speciesFilterStatusMessage={``}/>
     )
   }
 
@@ -61,9 +61,9 @@ class FetchLoader extends React.Component {
   componentDidCatch(error, info) {
     this.setState({
       error: {
-          description: `There was a problem rendering this component.`,
-          name: error.name,
-          message: `${error.message} – ${info}`
+        description: `There was a problem rendering this component.`,
+        name: error.name,
+        message: `${error.message} – ${info}`
       }
     })
   }
