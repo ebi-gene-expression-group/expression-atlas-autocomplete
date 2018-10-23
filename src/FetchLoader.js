@@ -52,7 +52,7 @@ class FetchLoader extends React.Component {
         error: {
           description: `There was a problem communicating with the server. Please try again later.`,
           name: e.name,
-          message: error.message
+          message: e.message
         }
       })
     }
