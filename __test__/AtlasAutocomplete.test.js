@@ -1,14 +1,12 @@
 import React from 'react'
-import TestRenderer from 'react-test-renderer'
-import Enzyme from 'enzyme'
+import renderer from 'react-test-renderer'
+
 import {mount} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
+
 import URI from 'urijs'
 import fetchMock from 'fetch-mock'
 
 import AtlasAutocomplete from '../src/AtlasAutocomplete'
-
-Enzyme.configure({ adapter: new Adapter() })
 
 describe(`AtlasAutocomplete`, () => {
   beforeEach(() => {
@@ -35,8 +33,7 @@ describe(`AtlasAutocomplete`, () => {
   })
 
   test(`matches snapshot`, () => {
-    const testRenderer = TestRenderer.create(<AtlasAutocomplete {...props} />)
-    const tree = testRenderer.toJSON()
+    const tree = renderer.create(<AtlasAutocomplete {...props} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 })

@@ -1,12 +1,16 @@
-const webpack = require(`webpack`);
 const path = require(`path`);
 const CleanWebpackPlugin = require(`clean-webpack-plugin`);
 
 const config = {
   entry: {
-    atlasAutocomplete: [`babel-polyfill`, `./html/render.js`],
-    dependencies: [`prop-types`, `react`, `react-dom`, `react-autocomplete`, `urijs`]
+    atlasAutocomplete: [`@babel/polyfill`, `./html/render.js`]
   },
+
+  plugins: [
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: `dist`
+    })
+  ],
 
   output: {
     library: `[name]`,
@@ -15,72 +19,32 @@ const config = {
     publicPath: `/dist/`
   },
 
-  plugins: [
-    new CleanWebpackPlugin([`dist`], {verbose: true, dry: false}),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: `dependencies`,
-      filename: `vendorCommons.bundle.js`,
-      minChunks: Infinity     // Explicit definition-based split, see dependencies entry
-    })
-  ],
+
+  resolve: {
+    alias: {
+      "react": path.resolve(`./node_modules/react`),
+      "react-dom": path.resolve(`./node_modules/react-dom`),
+      "styled-components": path.resolve(`./node_modules/styled-components`)
+    },
+  },
+
+  optimization: {
+    runtimeChunk: {
+       name: vendorsBundleName
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: vendorsBundleName,
+          chunks: 'all'
+        }
+      }
+    }
+  },
 
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: [ `style-loader`, `css-loader` ]
-      },
-      {
-        test: /\.less$/i,
-        use: [ `style-loader`, `css-loader`, `less-loader` ]
-      },
-      {
-        test: /\.(jpe?g|png|gif)$/i,
-        use: [
-          {
-            loader: `file-loader`,
-            options: {
-              query: {
-                name: `[hash].[ext]`,
-                hash: `sha512`,
-                digest: `hex`
-              }
-            }
-          },
-          {
-            loader: `image-webpack-loader`,
-            options: {
-              query: {
-                bypassOnDebug: true,
-                mozjpeg: {
-                  progressive: true,
-                },
-                gifsicle: {
-                  interlaced: true,
-                },
-                optipng: {
-                  optimizationLevel: 7,
-                }
-              }
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(svg)$/i,
-        use: [
-          {
-            loader: `file-loader`,
-            options: {
-              query: {
-                name: `[hash].[ext]`,
-                hash: `sha512`,
-                digest: `hex`
-              }
-            }
-          }
-        ]
-      },
       {
         test: /\.js$/i,
         exclude: /node_modules\//,
