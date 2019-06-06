@@ -1,5 +1,7 @@
 const path = require(`path`);
-const CleanWebpackPlugin = require(`clean-webpack-plugin`);
+const { CleanWebpackPlugin } = require(`clean-webpack-plugin`);
+
+const vendorsBundleName = `vendorCommons`
 
 const config = {
   entry: {
@@ -7,9 +9,7 @@ const config = {
   },
 
   plugins: [
-    new CleanWebpackPlugin({
-      cleanOnceBeforeBuildPatterns: `dist`
-    })
+    new CleanWebpackPlugin()
   ],
 
   output: {
