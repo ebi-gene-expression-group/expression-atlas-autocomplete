@@ -1,6 +1,6 @@
 {
   "name": "expression-atlas-autocomplete",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "React component that offers suggestions in a search field offered by a Solr suggester component filtered by context",
   "main": "lib/index.js",
   "scripts": {
