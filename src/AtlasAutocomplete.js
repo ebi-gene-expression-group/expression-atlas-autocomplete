@@ -63,7 +63,7 @@ class AtlasAutocomplete extends React.Component {
 
     return(
       <div className={wrapperClassName}>
-        <label>Gene ID, gene name or gene feature</label>
+        <label>Gene ID, gene name or gene feature:</label>
         <Autocomplete
           wrapperStyle={{display: ``}}
           inputProps={{type: `text`, name: `geneId`}}

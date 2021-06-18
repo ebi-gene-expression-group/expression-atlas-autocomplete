@@ -5,7 +5,7 @@ exports[`AtlasAutocomplete matches snapshot 1`] = `
   className=""
 >
   <label>
-    Gene ID, gene name or gene feature
+    Gene ID, gene name or gene feature:
   </label>
   <div
     style={
