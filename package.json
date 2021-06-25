@@ -1,5 +1,5 @@
 {
-  "name": "expression-atlas-autocomplete",
+  "name": "@ebi-gene-expression-group/expression-atlas-autocomplete",
   "version": "3.2.3",
   "description": "React component that offers suggestions in a search field offered by a Solr suggester component filtered by context",
   "main": "lib/index.js",
